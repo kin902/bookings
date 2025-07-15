@@ -1,0 +1,12 @@
+.datepicker {
+    z-index: 10000000000;
+}
+
+.my-footer {
+    height: 5em;
+    background-color: #222;
+    margin-top: 1em;
+    padding: 1em;
+    color: #f6f6f6;
+    font-size: 80%;
+}
