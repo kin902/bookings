@@ -1,0 +1,87 @@
+{{ template "base" .}}
+
+{{ define "content"}}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12 mx-auto">
+            <img src="/html-source/static/images/room-images/marjors-suite.png" class="img-fluid" alt="Major's Suite room"/>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <h1 class="text-center mt-4">Major's Suite</h1>
+            <p>
+                Your home away from home, set on the majestic waters of the Atlantic Ocean, this will be a vacation to remember
+                Your home away from home, set on the majestic waters of the Atlantic Ocean, this will be a vacation to remember
+                Your home away from home, set on the majestic waters of the Atlantic Ocean, this will be a vacation to remember
+                Your home away from home, set on the majestic waters of the Atlantic Ocean, this will be a vacation to remember
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col text-center">
+            <a id="check-availability" href="#" class="btn btn-success">Check Availability</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3"></div>
+
+        <div class="col-md-6">
+            <h1 class="mt-5">Search for availability</h1>
+
+            <form action="make-reservation.page.tmpl" method="get" novalidate class="needs-validation">
+                <div class="form-row">
+                    <div class="mb-3 form-group col">
+                        <label for="start_date" class="form-label">Starting Date</label>
+                        <input required type="date" class="form-control" id="start_date" name="start_date" aria-describedby="startDateHelp">
+                        <div id="startDateHelp" class="form-text text-muted">Enter your starting date in the form of YYYY-MM-DD.</div>
+                    </div>
+
+                    <div class="mb-3 form-group col">
+                        <label for="end_date" class="form-label">Ending Date</label>
+                        <input required type="date" class="form-control" id="end_date" name="end_date" aria-describedby="endDateHelp">
+                        <div id="endDateHelp" class="form-text text-muted">Enter your starting date in the form of YYYY-MM-DD.</div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Search availability</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+{{ end }}
+
+
+{{define "js"}}
+<script>
+const el = document.getElementById("check-availability");
+if (el != null) {
+
+    document.getElementById("check-availability").addEventListener("click", function() {
+        let html = `
+        <form id="check-availability-form" action="" method="post" novalidate class="needs-validation">
+            <div class="form-row">
+                <div class="col">
+                    <div class="form-row" id="reservation-dates-modal">
+                        <div class="col mb-3">
+                            <input disabled required class="form-control" type="text" id="start" name="start" placeholder="Arrival"/>
+                        </div>
+
+                        <div class="col">
+                            <input disabled required class="form-control" type="text" id="end" name="ned" placeholder="Departure"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        `
+
+        attention.custom({msg: html, title: "Choose your dates"})
+    })
+}
+
+</script>
+
+{{end}}
