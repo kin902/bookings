@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"myweb/cmd/pkg/config"
 	"myweb/cmd/pkg/models"
 	"myweb/cmd/pkg/render"
@@ -32,7 +33,7 @@ func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
 	remoteIP := r.RemoteAddr
 	m.App.Session.Put(r.Context(), "remote_ip", remoteIP)
 
-	render.DisplayTemplate(w, "home.page.tmpl", &models.TemplateData{})
+	render.DisplayTemplate(w, r, "home.page.tmpl", &models.TemplateData{})
 }
 
 // About is the about page handler
@@ -43,36 +44,47 @@ func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 	remoteIP := m.App.Session.GetString(r.Context(), "remote_ip")
 	stringMap["remote_ip"] = remoteIP
 
-	render.DisplayTemplate(w, "about.page.tmpl", &models.TemplateData{
+	render.DisplayTemplate(w, r, "about.page.tmpl", &models.TemplateData{
 		StringMap: stringMap,
 	})
 }
 
 // Reservation is the reservation page handler
 func (m *Repository) Reservation(w http.ResponseWriter, r *http.Request) {
-	render.DisplayTemplate(w, "reservation.page.tmpl", &models.TemplateData{})
+	render.DisplayTemplate(w, r, "reservation.page.tmpl", &models.TemplateData{})
 }
 
 // Generals is the general page handler
 func (m *Repository) Generals(w http.ResponseWriter, r *http.Request) {
-	render.DisplayTemplate(w, "generals.page.tmpl", &models.TemplateData{})
+	render.DisplayTemplate(w, r, "generals.page.tmpl", &models.TemplateData{})
 }
 
 // Majors is the about major page handler
 func (m *Repository) Majors(w http.ResponseWriter, r *http.Request) {
-	render.DisplayTemplate(w, "majors.page.tmpl", &models.TemplateData{})
+	render.DisplayTemplate(w, r, "majors.page.tmpl", &models.TemplateData{})
 }
 
-// Contact is the about major page handler
+// Contact is the about contact page handler
 func (m *Repository) Contact(w http.ResponseWriter, r *http.Request) {
-	render.DisplayTemplate(w, "contact.page.tmpl", &models.TemplateData{})
+	render.DisplayTemplate(w, r, "contact.page.tmpl", &models.TemplateData{})
 }
 
-// SearchAvailability is the about major page handler
+// SearchAvailability renders the search availability page
 func (m *Repository) SearchAvailability(w http.ResponseWriter, r *http.Request) {
-	render.DisplayTemplate(w, "search-availability.page.tmpl", &models.TemplateData{})
+	render.DisplayTemplate(w, r, "search-availability.page.tmpl", &models.TemplateData{})
+}
+
+// PostAvailability renders the search availability page
+func (m *Repository) PostAvailability(w http.ResponseWriter, r *http.Request) {
+	start := r.Form.Get("start")
+	end := r.Form.Get("end")
+
+	_, err := w.Write([]byte(fmt.Sprintf("Start date is %s and end date is %s", start, end)))
+	if err != nil {
+		return
+	}
 }
 
 func (m *Repository) MakeReservation(w http.ResponseWriter, r *http.Request) {
-	render.DisplayTemplate(w, "make-reservation.page.tmpl", &models.TemplateData{})
+	render.DisplayTemplate(w, r, "make-reservation.page.tmpl", &models.TemplateData{})
 }

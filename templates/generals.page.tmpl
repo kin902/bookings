@@ -3,7 +3,7 @@
 {{ define "content"}}
 <div class="container">
     <div class="row">
-        <div class="col mx-auto">
+        <div class="col-lg-6 col-md-8 col-sm-10 col-xs-12 mx-auto">
             <img src="/html-source/static/images/room-images/generals-quarters.png" class="img-fluid" alt="Generals Quarters room"/>
         </div>
     </div>
@@ -54,33 +54,5 @@
 {{ end }}
 
 {{define "js"}}
-<script>
-const el = document.getElementById("check-availability");
-if (el != null) {
-    document.getElementById("check-availability").addEventListener('click', function() {
-    let html = `
-<form id="check-availability-form" action="" method="post" novalidate class="needs-validation">
-<div class="form-row">
-    <div class="col">
-        <div class="form-row" id="reservation-dates-modal">
-            <div class="col mb-3">
-                <input disabled required class="form-control" type="text" id="start" name="start" placeholder="Arrival"/>
-            </div>
-
-            <div class="col">
-                <input disabled required class="form-control" type="text" id="end" name="ned" placeholder="Departure"/>
-            </div>
-        </div>
-    </div>
-</div>
-</form>
-        `
-
-    attention.error({msg: "Ooops"})
-    attention.custom({msg: html, title: "Choose your dates"})
-})
-}
-
-</script>
-
+<script src="/public/script/check-availability-button.js"></script>
 {{end}}

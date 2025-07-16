@@ -14,9 +14,6 @@
     <link rel="stylesheet" href="/html-source/static/css/stylesheet.css" />
 
     <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.3.4/dist/js/datepicker-full.min.js"></script>
-    {{ block "js" .}}
-
-    {{ end }}
 </head>
 
 <body>
@@ -212,6 +209,8 @@
                 }
             }
         </script>
+        {{ block "js" .}}
+        {{ end }}
     </body>
 </html>
 

@@ -2,6 +2,7 @@ package render
 
 import (
 	"bytes"
+	"github.com/justinas/nosurf"
 	"html/template"
 	"log"
 	"myweb/cmd/pkg/config"
@@ -19,12 +20,13 @@ func NewTemplate(a *config.AppConfig) {
 	app = a
 }
 
-func AddDefaultData(td *models.TemplateData) *models.TemplateData {
+func AddDefaultData(td *models.TemplateData, r *http.Request) *models.TemplateData {
+	td.CSRFToken = nosurf.Token(r)
 	return td
 }
 
 // DisplayTemplate renders a template
-func DisplayTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData) {
+func DisplayTemplate(w http.ResponseWriter, r *http.Request, tmpl string, td *models.TemplateData) {
 	var tc map[string]*template.Template
 	// create a template cache
 	if app.UseCache {
@@ -40,7 +42,7 @@ func DisplayTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData
 
 	buf := new(bytes.Buffer)
 
-	td = AddDefaultData(td)
+	td = AddDefaultData(td, r)
 
 	// Execute the template into the buffer
 	err := t.Execute(buf, td)
