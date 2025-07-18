@@ -3,7 +3,7 @@
         {{define "content"}}
 <div class="container">
     <div class="row">
-        <div class="col-md-3"></div>
+        <div class="col-md-3">&nbsp;</div>
         <div class="col-md-6">
             <h1 class="mt-3">Search for Availability</h1>
 
@@ -13,10 +13,14 @@
                     <div class="col">
                         <div class="row" id="reservation-dates">
                             <div class="col-md-6">
-                                <input required class="form-control" type="text" name="start" placeholder="Arrival">
+                                <label>
+                                    <input required class="form-control" type="text" name="start" placeholder="Arrival" />
+                                </label>
                             </div>
                             <div class="col-md-6">
-                                <input required class="form-control" type="text" name="end" placeholder="Departure">
+                                <label>
+                                    <input required class="form-control" type="text" name="end" placeholder="Departure" />
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -28,18 +32,17 @@
 
             </form>
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-md-3">&nbsp;</div>
     </div>
 
 </div>
-        {{end}}
+{{end}}
 
-
-        {{define "js"}}
+{{define "js"}}
 <script>
 const elem = document.getElementById('reservation-dates');
 const rangePicker = new DateRangePicker(elem, {
     format: "yyyy-mm-dd",
 });
 </script>
-        {{end}}
+{{end}}

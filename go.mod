@@ -7,4 +7,4 @@ require (
 	github.com/justinas/nosurf v1.2.0
 )
 
-require github.com/alexedwards/scs/v2 v2.9.0 // indirect
+require github.com/alexedwards/scs/v2 v2.9.0
