@@ -1,7 +1,9 @@
 package handlers
 
 import (
+	"encoding/json"
 	"fmt"
+	"log"
 	"myweb/cmd/pkg/config"
 	"myweb/cmd/pkg/models"
 	"myweb/cmd/pkg/render"
@@ -80,6 +82,32 @@ func (m *Repository) PostAvailability(w http.ResponseWriter, r *http.Request) {
 	end := r.Form.Get("end")
 
 	_, err := w.Write([]byte(fmt.Sprintf("Start date is %s and end date is %s", start, end)))
+	if err != nil {
+		return
+	}
+}
+
+type jsonResponse struct {
+	Ok      bool   `json:"ok"`
+	Message string `json:"message"`
+}
+
+// AvailabilityJSON handles request for availability and send JSON response
+func (m *Repository) AvailabilityJSON(w http.ResponseWriter, r *http.Request) {
+	resp := jsonResponse{
+		Ok:      false,
+		Message: "Available!",
+	}
+
+	out, err := json.MarshalIndent(resp, "", "    ")
+	if err != nil {
+		log.Println(err)
+		return
+	}
+
+	log.Println(string(out))
+	w.Header().Set("Content-Type", "application/json")
+	_, err = w.Write(out)
 	if err != nil {
 		return
 	}

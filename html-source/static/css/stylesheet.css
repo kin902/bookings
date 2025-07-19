@@ -10,3 +10,7 @@
     color: #f6f6f6;
     font-size: 80%;
 }
+
+div.swal2-actions {
+    z-index: 0; !important;
+}

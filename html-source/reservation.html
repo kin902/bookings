@@ -60,7 +60,7 @@
         Array.from(forms).forEach(form => {
             form.addEventListener('submit', event => {
                 if (!form.checkValidity()) {
-                     event.preventDefault()
+                    event.preventDefault()
                     event.stopPropagation()
                 }
 
@@ -68,29 +68,6 @@
             }, false)
         })
     })()
-
-    document.getElementById("color button").addEventListener('click', function() {
-        let html = `
-            <form id="check-availability-form" action="" method="post" novalidate class="needs-validation">
-                <div class="form-row">
-                    <div class="col">
-                        <div class="form-row" id="reservation-dates-modal">
-                            <div class="col mb-3">
-                                <input disabled required class="form-control" type="text" id="start" name="start" placeholder="Arrival"/>
-                            </div>
-
-                            <div class="col">
-                                <input disabled required class="form-control" type="text" id="end" name="ned" placeholder="Departure"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        `
-
-        attention.error({msg: "Ooops"})
-        attention.custom({msg: html, title: "Choose your dates"})
-    })
 
     function notify(msg, msgType) {
         notie.alert({
@@ -168,7 +145,7 @@
                 title = "",
             } = c
 
-            const {value: formValue} = await Swal.fire({
+            const {value: result} = await Swal.fire({
                 title: title,
                 html: msg,
                 backdrop: false,
@@ -181,11 +158,10 @@
                         showOnFocus: true,
                     });
                 },
-
                 preConfirm: () => {
                     return [
-                        document.getElementById("start").value,
-                        document.getElementById("end").value,
+                        document.getElementById("start").valueOf,
+                        document.getElementById("end").valueOf,
                     ];
                 },
                 didOpen: () => {
@@ -193,9 +169,6 @@
                     document.getElementById("end").removeAttribute("disabled");
                 }
             });
-            if (formValues) {
-                Swal.fire(JSON.stringify(formValues));
-            }
         }
 
         return {
