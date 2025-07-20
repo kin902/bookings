@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
-	"myweb/cmd/pkg/config"
-	"myweb/cmd/pkg/models"
-	"myweb/cmd/pkg/render"
+	"myweb/internal/config"
+	"myweb/internal/models"
+	"myweb/internal/render"
 	"net/http"
 )
 

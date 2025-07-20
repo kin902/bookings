@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"github.com/alexedwards/scs/v2"
 	"log"
-	"myweb/cmd/pkg/config"
-	"myweb/cmd/pkg/handlers"
-	"myweb/cmd/pkg/render"
+	"myweb/internal/config"
+	"myweb/internal/handlers"
+	"myweb/internal/render"
 	"net/http"
 	"time"
 )

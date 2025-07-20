@@ -5,8 +5,8 @@ import (
 	"github.com/justinas/nosurf"
 	"html/template"
 	"log"
-	"myweb/cmd/pkg/config"
-	"myweb/cmd/pkg/models"
+	"myweb/internal/config"
+	"myweb/internal/models"
 	"net/http"
 	"path/filepath"
 )
